@@ -1,0 +1,48 @@
+version: '3'
+
+tasks:
+  cleanup:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - task: cleanup_golua
+      - task: cleanup_gopherlua
+      - go mod tidy
+
+  cleanup_golua:
+    internal: true
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - rm -rf ./go-lua/cpuprofile.out
+      - rm -rf ./go-lua/memprofile.out
+      - rm -rf ./go-lua/go-lua.test
+
+  cleanup_gopherlua:
+    internal: true
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - rm -rf ./gopher-lua/cpuprofile.out
+      - rm -rf ./gopher-lua/memprofile.out
+      - rm -rf ./gopher-lua/gopher-lua.test
+
+  benchmark:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - go test -v -bench . ./... -benchtime=10000x -benchmem
+
+  benchmark_golua:
+    dir: '{{.USER_WORKING_DIR}}/go-lua'
+    env:
+      PPROF_PORT: ":8865"
+    cmds:
+      - task: cleanup_golua
+      - go test -v -bench=. -benchtime=10000x -benchmem -memprofile memprofile.out -cpuprofile cpuprofile.out
+      - go tool pprof -http $PPROF_PORT cpuprofile.out
+
+  benchmark_gopherlua:
+    dir: '{{.USER_WORKING_DIR}}/gopher-lua'
+    env:
+      PPROF_PORT: ":8866"
+    cmds:
+      - task: cleanup_gopherlua
+      - go test -v -bench=. -benchtime=10000x -benchmem -memprofile memprofile.out -cpuprofile cpuprofile.out
+      - go tool pprof -http $PPROF_PORT cpuprofile.out
