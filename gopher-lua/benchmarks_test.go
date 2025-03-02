@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/epikur-io/compare-go-lua-vms/internal/utils"
-	lua "github.com/yuin/gopher-lua"
+	lua "github.com/epikur-io/gopher-lua"
 )
 
 func BenchmarkGopherLuaTables(b *testing.B) {
