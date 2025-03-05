@@ -31,8 +31,6 @@ tasks:
 
   benchmark_golua:
     dir: '{{.USER_WORKING_DIR}}/go-lua'
-    env:
-      PPROF_PORT: ":8865"
     cmds:
       - task: cleanup_golua
       - go test -v -bench=. -benchtime=10000x -benchmem -memprofile memprofile.out -cpuprofile cpuprofile.out
@@ -40,8 +38,6 @@ tasks:
 
   benchmark_gopherlua:
     dir: '{{.USER_WORKING_DIR}}/gopher-lua'
-    env:
-      PPROF_PORT: ":8866"
     cmds:
       - task: cleanup_gopherlua
       - go test -v -bench=. -benchtime=10000x -benchmem -memprofile memprofile.out -cpuprofile cpuprofile.out
