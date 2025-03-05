@@ -25,7 +25,7 @@ tasks:
       - rm -rf ./gopher-lua/gopher-lua.test
 
   benchmark:
-    dir: '{{.USER_WORKING_DIR}}'
+    dir: '{{.TASKFILE_DIR}}'
     cmds:
       - go test -v -bench . ./... -benchtime=10000x -benchmem
 
