@@ -13,6 +13,6 @@ task benchmark
 # detailed benchmark with mem/cpu profile for go-lua
 task benchmark_golua
 
-# detailed benchmark with mem/cpu profile for go-lua
+# detailed benchmark with mem/cpu profile for gopher-lua
 task benchmark_gopherlua
 ```
