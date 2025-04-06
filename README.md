@@ -4,7 +4,7 @@ This repository contains some tests and benchmarks to compare the two Lua implem
 
 ## Running benchmarks:
 
-**Note:** Requires [taksfile](https://taskfile.dev/installation/) top be installed.
+**Note:** Requires [taskfile](https://taskfile.dev/installation/) top be installed.
 
 ```bash
 # overall benchmark
