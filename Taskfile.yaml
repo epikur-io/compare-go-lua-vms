@@ -31,14 +31,18 @@ tasks:
 
   benchmark_golua:
     dir: '{{.TASKFILE_DIR}}/go-lua'
+    env:
+      PPROF_ADDR: :9901
     cmds:
       - task: cleanup_golua
       - go test -v -bench=. -benchtime=10000x -benchmem -memprofile memprofile.out -cpuprofile cpuprofile.out
-      - go tool pprof -http $PPROF_PORT cpuprofile.out
+      - go tool pprof -http $PPROF_ADDR cpuprofile.out
 
   benchmark_gopherlua:
     dir: '{{.TASKFILE_DIR}}/gopher-lua'
+    env:
+      PPROF_ADDR: :9902
     cmds:
       - task: cleanup_gopherlua
       - go test -v -bench=. -benchtime=10000x -benchmem -memprofile memprofile.out -cpuprofile cpuprofile.out
-      - go tool pprof -http $PPROF_PORT cpuprofile.out
+      - go tool pprof -http $PPROF_ADDR cpuprofile.out
