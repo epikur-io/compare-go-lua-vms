@@ -1,0 +1,4 @@
+go-lua/cpuprofile.out
+go-lua/memprofile.out
+gopher-lua/cpuprofile.out
+gopher-lua/memprofile.out
