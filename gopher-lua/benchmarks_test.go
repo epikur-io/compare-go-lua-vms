@@ -15,7 +15,6 @@ func BenchmarkGopherLuaTables(b *testing.B) {
 
 	for _, file := range files {
 		testname := fmt.Sprintf("tables/%s", filepath.Base(file))
-		utils.FailOnError(b, err)
 		b.Run(testname, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				b.StartTimer()
